@@ -1,0 +1,33 @@
+<template>
+  <lightning-card title={pageTitle} icon-name="standard:task">
+    <template lwc:if={toDoList}>
+      <div class="slds-var-m-around_medium">
+        <template for:each={toDoList} for:item="todo">
+          <lightning-layout
+            key={todo.Id}
+            class="slds-var-m-vertical_x-small custom-box"
+            vertical-align="stretch"
+            multiple-rows="true"
+          >
+            <lightning-layout-item size="11" padding="around-small">
+              <b>
+                Task: {todo.Title__c}
+                <br />
+                Due Date: {todo.Due_Date__c}
+              </b>
+            </lightning-layout-item>
+            <lightning-layout-item size="1" padding="around-small">
+              <template lwc:if={showButton}>
+                <lightning-button-icon
+                  icon-name="standard:task2"
+                  onclick={handleClick}
+                  data-recordid={todo.Id}
+                ></lightning-button-icon>
+              </template>
+            </lightning-layout-item>
+          </lightning-layout>
+        </template>
+      </div>
+    </template>
+  </lightning-card>
+</template>
